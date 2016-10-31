@@ -1,2 +1,2 @@
 # altoastral
-Software para clínica de atendimento estético
+Aplicativo para clínica de atendimento estético
