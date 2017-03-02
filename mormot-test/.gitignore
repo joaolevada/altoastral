@@ -1,0 +1,9 @@
+# Lazarus arquivos de backup gerados pela IDE
+backup/
+*.bak
+
+# Lazarus arquivos de output, configurados neste projeto
+out/
+
+# Lazarus arquivo de sessao do projeto, gerado pela IDE e mantido por usuario
+*.lps
