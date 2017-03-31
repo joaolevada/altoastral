@@ -6,8 +6,8 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Classes, SysUtils, CustApp, notes
-  { you can add units after this };
+  Classes, SysUtils, CustApp, notesorm, SynSQLite3Static, mORMot,
+  mORMotSQLite3, notesguitab;
 
 type
 
@@ -16,6 +16,9 @@ type
   TMormotTestApp = class(TCustomApplication)
   protected
     procedure DoRun; override;
+  private
+    procedure TestMormotNote(ARest: TSQLRest);
+    procedure TestMormotNoteRetrieve(ARest: TSQLRest);
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -27,6 +30,8 @@ type
 procedure TMormotTestApp.DoRun;
 var
   ErrorMsg: String;
+  VRestServer: TSQLRestServerDB;
+  VRestClient: TSQLRestClientURI;
 begin
   // quick check parameters
   ErrorMsg:=CheckOptions('h', 'help');
@@ -36,6 +41,23 @@ begin
     Exit;
   end;
 
+  VRestServer := TSQLRestServerDB.CreateWithOwnModel([notesorm.TNote],
+    'mormot-test.db');
+  VRestClient := TSQLRestClientURIDll.Create(
+    TSQLModel.Create(VRestServer.Model), @URIRequest);
+  try
+    VRestServer.ExportServer;
+    USEFASTMM4ALLOC := True;
+    VRestServer.CreateMissingTables();
+    VRestClient.Model.Owner := VRestClient;
+    TestMormotNote(VRestClient);
+    WriteLn('Nota salva. mORMmot testado.');
+    ReadLn;
+  finally
+    VRestClient.Free;
+    VRestServer.Free;
+  end;
+
   // parse parameters
   if HasOption('h', 'help') then begin
     WriteHelp;
@@ -43,10 +65,24 @@ begin
     Exit;
   end;
 
-  { add your program here }
+
 
   // stop program loop
   Terminate;
+end;
+
+procedure TMormotTestApp.TestMormotNote(ARest: TSQLRest);
+var
+  VNote: notesorm.TNote;
+begin
+  VNote := TNote.Create;
+  VNote.Body := 'Sample 1. This is a sample note.';
+  ARest.Add(VNote, True);
+end;
+
+procedure TMormotTestApp.TestMormotNoteRetrieve(ARest: TSQLRest);
+begin
+
 end;
 
 constructor TMormotTestApp.Create(TheOwner: TComponent);

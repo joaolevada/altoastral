@@ -4,14 +4,12 @@
     <Version Value="9"/>
     <PathDelim Value="\"/>
     <General>
-      <Flags>
-        <MainUnitHasCreateFormStatements Value="False"/>
-      </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="mORMot Test App"/>
-      <UseAppBundle Value="False"/>
+      <Title Value="synfileapp"/>
       <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
     </General>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -24,32 +22,59 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <Units Count="3">
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="5">
       <Unit0>
-        <Filename Value="mormottestapp.lpr"/>
+        <Filename Value="synfileapp.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="notesorm.pas"/>
+        <Filename Value="mainfrm.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="notesguitab.pas"/>
+        <Filename Value="FileClient.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="FileServer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="FileTables.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="out\bin\$(TargetCPU)-$(TargetOS)\mormottestapp"/>
+      <Filename Value="synfileapp"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);C:\newpascal\ccr\mormot\"/>
       <OtherUnitFiles Value="C:\newpascal\ccr\mormot\;C:\newpascal\ccr\mormot\SQLite3\"/>
-      <UnitOutputDirectory Value="out\lib\$(TargetCPU)-$(TargetOS)"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <OtherDefines Count="1">
+        <Define0 Value="FPC_DEPHI"/>
+      </OtherDefines>
+    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
