@@ -1,0 +1,32 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <hr>
+
+    <div id="app-2">
+        <span v-bind:title="message">
+            Hover your mouse over me for a few seconds 
+            to see my dinamically bound title!
+        </span>
+    </div>
+
+    <hr>
+
+    <div id="app-3">
+        <p v-if="seen">Now you see me</p>
+    </div>
+
+</body>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="./app.js"></script>
+
+</html>
