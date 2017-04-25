@@ -56,9 +56,30 @@
         </ol>
     </div>
 
+    <hr>
+
+    <div id="example">
+        <p>Original message: "{{ message }}""</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    </div>
+
+    <hr>
+
+    <div id="watch-example">
+        <p>
+            Ask a yes/no question:
+            <input v-model="question">
+        </p>
+        <p>{{ answer }}</p>
+    </div>
+
 </body>
 
 <script src="https://unpkg.com/vue"></script>
+
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+
 <script src="./app.js"></script>
 
 </html>
